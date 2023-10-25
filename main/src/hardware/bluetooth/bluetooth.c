@@ -38,7 +38,7 @@ static bool bluetooth_initialized = false;
 #define BT_RC_CT_TAG "RC_CT"
 
 /* device name */
-#define TARGET_DEVICE_NAME "JBL Go 3"
+#define TARGET_DEVICE_NAME "RAD-B5309"
 #define LOCAL_DEVICE_NAME "ESP_A2DP_SRC"
 #define BT_TAG "BLUETOOTH"
 #define BT_DEVICE_NAME "MEU_DISPOSITIVO_BT"
@@ -356,51 +356,20 @@ bool bluetooth_is_connected()
     return s_a2d_state == APP_AV_STATE_CONNECTED;
 }
 
-int32_t audio_buffer_index = 0;
-#define AUDIO_FREQUENCY 300.0
-#define SAMPLE_RATE 44100
-#define TWO_PI 6.28318530717958647693f // 2 * M_PI
-float step = TWO_PI * AUDIO_FREQUENCY / SAMPLE_RATE;
-float phase_accumulator = 0;
+/* generate some random noise to simulate source audio */
+static int32_t bt_app_a2d_data_cb(uint8_t *data, int32_t len) {
 
-/* Função para gerar uma amostra senoidal com base no passo atual */
-int16_t generate_sine_sample()
-{
-    float sin_value = sinf(phase_accumulator); // Gera uma amostra senoidal
-    int16_t sample = (int16_t)(sin_value * INT16_MAX); // Converte para 16 bits
-    phase_accumulator += step;
-    if (phase_accumulator >= TWO_PI)
-    {
-        phase_accumulator -= TWO_PI;
-    }
-    return sample;
-}
-
-/* Função para preencher o buffer de áudio com dados gerados */
-static int32_t bt_app_a2d_data_cb(uint8_t *audio_buffer, int32_t buffer_len)
-{
-    if (audio_buffer == NULL || buffer_len < 0)
-    {
+    if (data == NULL || len < 0) {
         return 0;
     }
 
-    for (int i = 0; i < (buffer_len / 4); i++)
-    {
-        int16_t sample = generate_sine_sample() //+ audio_data.real_data[i];
-
-        audio_buffer[i * 4 + 0] = (uint8_t)(sample & 0x00FF);
-        audio_buffer[i * 4 + 1] = (uint8_t)(sample >> 8 & 0x00FF);
-        audio_buffer[i * 4 + 2] = (uint8_t)(sample & 0x00FF);
-        audio_buffer[i * 4 + 3] = (uint8_t)(sample >> 8 & 0x00FF);
-        audio_buffer_index++;
-        if (audio_buffer_index >= 735)
-        {
-            audio_buffer_index = 0;
-        }
+    int16_t *p_buf = (int16_t *)data;
+    for (int i = 0; i < (len >> 1); i++) {
+        p_buf[i] =  audio_data.real_data[i] +  (80000); // Use dados simulados armazenados em audio_data
     }
-    return buffer_len;
-}
 
+    return len;
+}
 
 
 static void bt_app_av_sm_hdlr(uint16_t event, void *param)
