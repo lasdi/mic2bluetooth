@@ -1,16 +1,15 @@
 idf_component_register(SRCS 
                         "main.c"
-                        "src/hardware/microphone/mic.c" # Inclua o arquivo mic.c
-                        "src/hardware/bluetooth/bluetooth.c" # Inclua o arquivo bluetooth.c
-                        "src/hardware/bluetooth/bt_app_core.c" # Inclua o arquivo bt_app_core.c
-                        "src/dsp/signal.c" # Inclua o arquivo signal.c
-                        "src/utils/audio_utils.c" # Inclua o arquivo audio_utils.c
+                        "src/hardware/microphone/mic.c" 
+                        "src/hardware/bluetooth/bluetooth.c" 
+                        "src/hardware/bluetooth/bt_app_core.c"
+                        "src/utils/audio_utils.c"
                     
                     INCLUDE_DIRS 
                     "src/hardware/microphone"
                     "src/hardware/bluetooth"
-                    "src/dsp"
                     "src/utils"
+                    "src/"
                     "."
                     REQUIRES nvs_flash
                     REQUIRES bt
