@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 bool mic_init();
-void mic_read_data(int16_t* buffer, int buffer_samples);
+void mic_read_data();
+void mic_deinit();
 
 #endif /* MIC_H */

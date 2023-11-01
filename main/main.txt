@@ -1,33 +1,22 @@
-.
+main
 ├── CMakeLists.txt
-├── estrutura.txt
 ├── idf_component.yml
 ├── main.c
 ├── main.txt
-├── spiffs_data
-│   └── zelda_16k_16bit.wav
 └── src
-    ├── dsp
-    │   ├── signal.c
-    │   └── signal.h
     ├── hardware
-    │   ├── button
-    │   │   ├── buttons.c
-    │   │   └── buttons.h
-    │   ├── display
-    │   │   ├── display.c
-    │   │   └── display.h
-    │   ├── led
-    │   │   ├── led.c
-    │   │   └── led.h
-    │   └── microphone
-    │       ├── mic.c
-    │       └── mic.h
-    ├── ui
-    │   ├── ui.c
-    │   └── ui.h
+    │   ├── bluetooth
+    │   │   ├── bluetooth.c
+    │   │   ├── bluetooth.h
+    │   │   ├── bt_app_core.c
+    │   │   └── bt_app_core.h
+    │   └── microphone
+    │       ├── mic.c
+    │       └── mic.h
+    ├── preferences.h
     └── utils
         ├── audio_utils.c
         └── audio_utils.h
+dir.txt  [error opening dir]
 
-11 directories, 20 files
+6 directories, 13 files

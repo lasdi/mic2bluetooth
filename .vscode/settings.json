@@ -99,6 +99,8 @@
         "esp_system.h": "c",
         "freertos.h": "c",
         "mic.h": "c"
-    }
+    },
+    "idf.port": "/dev/cu.usbserial-0001",
+    "idf.espIdfPath": "/Users/f7lipe/esp/esp-idf"
   }
   
