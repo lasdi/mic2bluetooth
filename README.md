@@ -6,7 +6,7 @@
 
 <strong>English 🇺🇸</strong>
 <br>
-[Portguese 🇧🇷](./README.md) 
+[Portguese 🇧🇷](./README.pt.md) 
 
 ## Overview
 
