@@ -7,7 +7,7 @@
 
 <strong>Português 🇧🇷</strong>
 <br>
-[English 🇺🇸](./README-en.md) 
+[English 🇺🇸](./README.md) 
 
 ## Visão Geral
 
